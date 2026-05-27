@@ -1,26 +1,93 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --or: #FF4D00;
+  --or2: #FF7A35;
+  --gold: #FFB800;
+  --green: #00E676;
+  --blue: #00CFFF;
+  --red: #FF3B3B;
+  --wa: #25D366;
+  --dark: #080808;
+  --card: #111111;
+  --card2: #181818;
+  --card3: #1E1E1E;
+  --border: rgba(255,255,255,0.07);
+  --white: #F2EDE4;
+  --muted: #666;
+  --muted2: #999;
+  --background: var(--dark);
+  --foreground: var(--white);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--dark);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm), Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  opacity: 0.38;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+::selection {
+  background: var(--or);
+  color: var(--dark);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.section-title {
+  font-family: var(--font-instrument), serif;
+  font-size: clamp(2.6rem, 6vw, 4.9rem);
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+
+.orange-text {
+  color: var(--or);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 2px, transparent 2px);
+  background-size: 60px 60px;
+}
+
+.card-border {
+  border: 1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
